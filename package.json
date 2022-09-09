@@ -1,0 +1,14 @@
+{
+  "name": "pshow",
+  "version": ".1.0",
+  "description": "Resim bloğu. Resim ekleyebilir, silebilir ve sergileyebilirsiniz. Express JS tabanlı oluşturuldu.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "keywords": ["express", "express js", "pshow", "photo show", "photo blog"],
+  "author": "Selami Demir",
+  "license": "ISC"
+}
