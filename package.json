@@ -8,7 +8,24 @@
     "start": "node index",
     "dev": "nodemon index"
   },
-  "keywords": ["express", "express js", "pshow", "photo show", "photo blog"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selamidemir/pshow.git"
+  },
+  "keywords": [
+    "express",
+    "express js",
+    "pshow",
+    "photo show",
+    "photo blog"
+  ],
   "author": "Selami Demir",
-  "license": "ISC"
+  "bugs": {
+    "url": "https://github.com/selamidemir/pshow/issues"
+  },
+  "homepage": "https://github.com/selamidemir/pshow/#readme",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "2.7.1"
+  }
 }
