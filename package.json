@@ -1,12 +1,12 @@
 {
   "name": "pshow",
-  "version": ".1.0",
+  "version": "0.1.0",
   "description": "Resim bloğu. Resim ekleyebilir, silebilir ve sergileyebilirsiniz. Express JS tabanlı oluşturuldu.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index",
-    "dev": "nodemon index"
+    "start": "node app",
+    "dev": "nodemon app"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,10 @@
   "homepage": "https://github.com/selamidemir/pshow/#readme",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^2.0.19",
     "prettier": "2.7.1"
+  },
+  "dependencies": {
+    "express": "^4.18.1"
   }
 }
