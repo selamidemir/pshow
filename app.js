@@ -18,7 +18,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload());
-app.use(methodOverride('_method'));
+app.use(methodOverride('_method', { methods: ['POST', 'GET']}));
 
 app.get('/', async (req, res) => {
   // res.sendFile(path.resolve(__dirname, 'temp/index.html'));
@@ -66,6 +66,14 @@ app.post('/photos', async (req, res) => {
     });
     res.redirect('/');
   });
+});
+
+app.delete('/photos/:id', async (req, res) => {
+  const photo = await Photo.findOne({_id: req.params.id});
+  const uploadPath = __dirname + '/public' + photo.image;
+  if(fs.existsSync(uploadPath)) fs.unlinkSync(__dirname + '/public' + photo.image);
+  await Photo.findByIdAndRemove(req.params.id);
+  res.redirect('/');
 });
 
 app.listen(port, () => console.log(`Sunucu ${port} nolu porttan başlatıldı.`));

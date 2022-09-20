@@ -159,3 +159,6 @@ dist
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+./public/uploads/*
+public/uploads/*
