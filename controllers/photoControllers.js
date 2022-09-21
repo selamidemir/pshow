@@ -30,13 +30,20 @@ exports.getAllPhotos = async (req, res) => {
 
 exports.updatePhoto = async (req, res) => {
   const photo = await Photo.findOne({ _id: req.params.id });
-  photo.title = req.body.title;
-  photo.description = req.body.description;
+  if (req.body.security === String(process.env.APP_SECURITY_KEY)) {
+    photo.title = req.body.title;
+    photo.description = req.body.description;
+  }
   photo.save();
   res.redirect(`/photos/${req.params.id}`);
 };
 
 exports.createPhoto = async (req, res) => {
+  if (req.body.security !== String(process.env.APP_SECURITY_KEY))
+    res.redirect('/');
+  const data = req.body;
+  delete data.security;
+
   const uploadDir = 'public/uploads';
   if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir);
   const uploadedPhoto = req.files.photo;
@@ -44,7 +51,7 @@ exports.createPhoto = async (req, res) => {
 
   uploadedPhoto.mv(uploadPath, async () => {
     await Photo.create({
-      ...req.body,
+      ...data,
       image: '/uploads/' + uploadedPhoto.name,
     });
     res.redirect('/');
