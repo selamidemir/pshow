@@ -10,8 +10,8 @@ const app = express();
 dotenv.config();
 
 const port = process.env.APP_PORT || 5000;
-console.log(process.env.APP_PORT)
-mongoose.connect(`mongodb+srv://${process.env.APP_MONGODB_USER}:${process.env.APP_MONGODB_PASSWORD}@pshow-db.zacnyjj.mongodb.net/pshow-db?retryWrites=true&w=majority`)
+
+mongoose.connect(`mongodb+srv://${process.env.APP_MONGODB_USER}:${process.env.APP_MONGODB_PASSWORD}${process.env.APP_MONGODB_URL}${process.env.APP_MONGODB_DB}?retryWrites=true&w=majority`)
 .then(() => console.log("Veritabanına bağlanıldı."))
 .catch(err => console.log(`Veritabanına bağlanılamadı.\n${err}`));
 
