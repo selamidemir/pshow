@@ -13,9 +13,19 @@ exports.getPhoto = async (req, res) => {
 };
 
 exports.getAllPhotos = async (req, res) => {
-  // res.sendFile(path.resolve(__dirname, 'temp/index.html'));
-  const photos = await Photo.find().sort('-createdDate');
-  res.render('index', { photos });
+  const page = parseInt(req.query.page) || 1;
+  const photosPerPage = 2;
+  const totalPhotos = await Photo.find().countDocuments();
+
+  const photos = await Photo.find()
+    .sort('-createdDate')
+    .skip((page - 1) * photosPerPage)
+    .limit(photosPerPage);
+  res.render('index', {
+    photos: photos,
+    current: page,
+    pages: Math.ceil(totalPhotos / photosPerPage),
+  });
 };
 
 exports.updatePhoto = async (req, res) => {
