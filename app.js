@@ -9,7 +9,7 @@ const app = express();
 
 dotenv.config();
 
-const port = process.env.APP_PORT || 5000;
+const port = process.env.PORT || 5000;
 
 mongoose.connect(`mongodb+srv://${process.env.APP_MONGODB_USER}:${process.env.APP_MONGODB_PASSWORD}${process.env.APP_MONGODB_URL}${process.env.APP_MONGODB_DB}?retryWrites=true&w=majority`)
 .then(() => console.log("Veritabanına bağlanıldı."))
