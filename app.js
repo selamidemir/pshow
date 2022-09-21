@@ -1,13 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const fileUpload = require('express-fileupload');
 const methodOverride = require('method-override');
 const photoControllers = require('./controllers/photoControllers')
 const pageControllers = require('./controllers/pageControllers')
 const app = express();
-const port = 3001;
 
-mongoose.connect('mongodb://localhost:27017/pshow');
+dotenv.config();
+
+const port = process.env.APP_PORT || 5000;
+console.log(process.env.APP_PORT)
+mongoose.connect(`mongodb+srv://${process.env.APP_MONGODB_USER}:${process.env.APP_MONGODB_PASSWORD}@pshow-db.zacnyjj.mongodb.net/pshow-db?retryWrites=true&w=majority`)
+.then(() => console.log("Veritabanına bağlanıldı."))
+.catch(err => console.log(`Veritabanına bağlanılamadı.\n${err}`));
 
 // Middelwares
 app.set('view engine', 'ejs');
